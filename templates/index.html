@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scala-1.0">
+        <link rel="stylesheet" type="text/css" href="../static/index.css">
+    </head>
+
+    <body>
+
+        <form class ="grid" action="/get" method="POST">
+
+            <label for ="Name">Country Name: </label>
+            <input type="text" name="name" id="name">
+            <center><input type="Submit" class="file_submit"></center>
+
+            
+                {% for i in data %}
+                    {% if i["sName"]== name %}
+                        {% for k,v in i.items() %}
+                            {% if k=="sCountryFlag" %}
+                                <h3>{{k}}</h3>
+                                <img src="{{v}}" style="width: 100px;height: 70px;">
+                            {% elif k=="Languages" %}
+                                <h2 style="color:red">{{k}}</h2>
+                                {% for j in v %}
+                                    <h4>  - {{j["sName"]}} ({{j["sISOCode"]}})</h4>
+                                {% endfor %}
+                            {% else %}
+                                <h4>{{k}}: {{v}} </h4>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            
+
+        </form>
+    </body>
+
+
+
+</html>
